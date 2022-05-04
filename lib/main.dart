@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_app/models/todo.dart';
 import 'package:test_app/themes/color_theme.dart';
-import 'package:test_app/widgets/list_todo_widget.dart';
-import 'package:test_app/widgets/todo_screen.dart';
+import 'package:test_app/widgets/list_view_item.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,6 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget buildBody(BuildContext context) {
+    List<Todo> todos = [
+      Todo(title: 'Clean house', detail: 'Clean the bedroom'),
+      Todo(title: 'Throw trash', detail: 'Trash can is full', expireDate: 'Tomorow'),
+      Todo(title: 'Cooking', detail: 'Chicket sandwich', expireDate: 'Not Expire')
+    ];
     String userName = 'Hoàng Tân';
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -75,15 +79,17 @@ class _MyHomePageState extends State<MyHomePage> {
         Expanded(
           flex: 1,
           child: Container(
+            padding: EdgeInsets.all(25),
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30))),
-            child: ListView(
-              children: [
-
-              ],
+            child: ListView.builder(
+              itemCount: todos.length,
+              itemBuilder: (context, index) {
+                return ListViewItem(todo: todos[index]);
+              },
             ),
           ),
         )
