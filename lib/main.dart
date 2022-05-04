@@ -50,8 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget buildBody(BuildContext context) {
     List<Todo> todos = [
       Todo(title: 'Clean house', detail: 'Clean the bedroom'),
-      Todo(title: 'Throw trash', detail: 'Trash can is full', expireDate: 'Tomorow'),
-      Todo(title: 'Cooking', detail: 'Chicket sandwich', expireDate: 'Not Expire')
+      Todo(title: 'Throw trash', detail: 'Trash can is full'),
+      Todo(title: 'Cooking a fucking large chicken with some fucking deliciout mushroom and and and... I don\'t know', detail: 'Chicket sandwich')
     ];
     String userName = 'Hoàng Tân';
     double height = MediaQuery.of(context).size.height;
@@ -88,7 +88,30 @@ class _MyHomePageState extends State<MyHomePage> {
             child: ListView.builder(
               itemCount: todos.length,
               itemBuilder: (context, index) {
-                return ListViewItem(todo: todos[index]);
+                return Dismissible(
+                    key: UniqueKey(),
+                    direction: DismissDirection.endToStart,
+                    
+                    onDismissed: (direction) {
+                      if(direction == DismissDirection.startToEnd) {
+                        setState(() {
+                          todos.removeAt(index);
+                        });
+                      }
+                    },
+                    background: Container(
+                      alignment: Alignment.centerRight,
+                      padding: const EdgeInsets.only(
+                        right: 15
+                      ),
+                      color: Colors.red,
+                      child: const Icon(
+                        Icons.delete_sweep,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        size: 35,
+                      ),
+                    ),
+                    child: ListViewItem(todo: todos[index]));
               },
             ),
           ),

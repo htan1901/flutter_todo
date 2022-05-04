@@ -32,7 +32,7 @@ class _ListViewItemState extends State<ListViewItem> {
             });
           }),
       title: Text(_todo.title, style: renderEffect(_isChecked),),
-      subtitle: Text(_todo.detail, style: renderEffect(_isChecked),),
+      subtitle: Text(_todo.detail!, style: renderEffect(_isChecked),),
     );
   }
 

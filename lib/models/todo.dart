@@ -1,28 +1,20 @@
 class Todo {
   String _title = '';
-  String _detail = '';
-  String? _expireDate;
+  String? _detail = '';
 
   String get title => _title;
-  String get detail => _detail;
-  String? get expireDate => _expireDate;
+  String? get detail => _detail;
 
   set title(String title) {
     _title = title;
   }
 
-  set detail(String detail) {
+  set detail(String? detail) {
     _detail = detail;
   }
-  
-  set expireDate(String? expireDate) {
-    _expireDate = expireDate;
-  }
 
-
-  Todo({required String title, required String detail, String? expireDate}) {
+  Todo({required String title,String? detail}) {
     _title = title;
     _detail = detail;
-    _expireDate = expireDate; 
   }
 }
