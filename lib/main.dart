@@ -36,6 +36,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       drawer: buildDrawer(),
       appBar: AppBar(
+        // leading: IconButton(
+        //   icon: Icon(Icons.menu_rounded),
+        //   onPressed: () => Scaffold.of(context).openDrawer(),
+        // ),
         backgroundColor: const Color.fromRGBO(0, 106, 216, 1),
         elevation: 0,
       ),
@@ -43,15 +47,29 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add),
+        tooltip: 'Thêm Một việc cần làm',
       ),
     );
   }
 
   Widget buildBody(BuildContext context) {
     List<Todo> todos = [
-      Todo(title: 'Clean house', detail: 'Clean the bedroom'),
+      Todo(title: 'Clean house'),
       Todo(title: 'Throw trash', detail: 'Trash can is full'),
-      Todo(title: 'Cooking a fucking large chicken with some fucking deliciout mushroom and and and... I don\'t know', detail: 'Chicket sandwich')
+      Todo(
+          title:
+              'Cooking a fucking large chicken with some fucking deliciout mushroom and and and... I don\'t know',
+          detail: 'Chicket sandwich'),
+      Todo(title: 'Clean house'),
+      Todo(title: 'Throw trash', detail: 'Trash can is full'),
+      Todo(
+          title:
+              'Cooking a fucking large chicken with some fucking deliciout mushroom and and and... I don\'t know',
+          detail: 'Chicket sandwich'),
+      Todo(
+          title:
+              'Cooking a fucking large chicken with some fucking deliciout mushroom and and and... I don\'t know',
+          detail: 'Chicket sandwich'),
     ];
     String userName = 'Hoàng Tân';
     double height = MediaQuery.of(context).size.height;
@@ -79,7 +97,10 @@ class _MyHomePageState extends State<MyHomePage> {
         Expanded(
           flex: 1,
           child: Container(
-            padding: EdgeInsets.all(25),
+            padding: const EdgeInsets.only(
+                top: 25,
+                // left: 25,
+                bottom: 75),
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -91,9 +112,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Dismissible(
                     key: UniqueKey(),
                     direction: DismissDirection.endToStart,
-                    
                     onDismissed: (direction) {
-                      if(direction == DismissDirection.startToEnd) {
+                      if (direction == DismissDirection.startToEnd) {
                         setState(() {
                           todos.removeAt(index);
                         });
@@ -101,9 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     background: Container(
                       alignment: Alignment.centerRight,
-                      padding: const EdgeInsets.only(
-                        right: 15
-                      ),
+                      padding: const EdgeInsets.only(right: 15),
                       color: Colors.red,
                       child: const Icon(
                         Icons.delete_sweep,
@@ -121,6 +139,88 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget buildDrawer() {
-    return const Drawer();
+    bool isSelected = true;
+    return Drawer(
+        child: SafeArea(
+      child: Column(
+        children: <Widget>[
+          ButtonBar(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          ),
+          Container(
+              padding: const EdgeInsets.only(top: 20),
+              child: const CircleAvatar(
+                radius: 60,
+                backgroundImage: AssetImage('assets/images/dogo.png'),
+              )),
+          Container(
+            alignment: Alignment.center,
+            child: const ListTile(
+              title: Text(
+                'Hoàng Tân',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+            ),
+          ),
+          ListView(
+            shrinkWrap: true,
+            padding: const EdgeInsets.only(
+              top: 40,
+              left: 20,
+              right: 20,
+            ),
+            children: [
+              ListTile(
+                tileColor: selectedColor(isSelected),
+                leading:
+                    Icon(Icons.task_alt, color: selectedColor(!isSelected)),
+                title: Text('Việc cần làm',
+                    style: drawerTileTextStyle(isSelected)),
+                onTap: () {
+                  setState(() {
+                    isSelected = !isSelected;
+                  });
+                },
+              ),
+              ListTile(
+                tileColor: selectedColor(!isSelected),
+                leading:
+                    Icon(Icons.help_outline, color: selectedColor(isSelected)),
+                title: Text('Về ứng dụng',
+                    style: drawerTileTextStyle(!isSelected)),
+                onTap: () {
+                  setState(() {
+                    isSelected = !isSelected;
+                  });
+                },
+              )
+            ],
+          )
+        ],
+      ),
+    ));
+  }
+
+  Color selectedColor(bool isSelected) {
+    return isSelected
+        ? Color.fromRGBO(0, 106, 216, 1)
+        : Color.fromARGB(255, 255, 255, 255);
+  }
+
+  TextStyle drawerTileTextStyle(bool isSelected) {
+    if (isSelected) {
+      return const TextStyle(fontSize: 17, color: Colors.white);
+    }
+    return const TextStyle(fontSize: 17, color: Color.fromRGBO(0, 106, 216, 1));
   }
 }

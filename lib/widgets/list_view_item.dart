@@ -20,7 +20,6 @@ class _ListViewItemState extends State<ListViewItem> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      visualDensity: VisualDensity.comfortable,
       enabled: !_isChecked,
       leading: Checkbox(
           shape: const CircleBorder(),
@@ -32,7 +31,7 @@ class _ListViewItemState extends State<ListViewItem> {
             });
           }),
       title: Text(_todo.title, style: renderEffect(_isChecked),),
-      subtitle: Text(_todo.detail!, style: renderEffect(_isChecked),),
+      subtitle: _todo.detail == null ? null : Text(_todo.detail!, style: renderEffect(_isChecked),),
     );
   }
 
