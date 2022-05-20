@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/models/todo.dart';
+import 'package:todo/models/todo.dart';
 
 class ListViewItem extends StatefulWidget {
   late Todo _todo;
