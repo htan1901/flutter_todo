@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo/widgets/drawer.dart';
+import 'package:todo/styles/text_style.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({Key? key}) : super(key: key);
@@ -16,9 +16,8 @@ class AboutPage extends StatelessWidget {
   }
 
   Widget buildBody(BuildContext context) {
-    String userName = 'Hoàng Tân';
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    // double height = MediaQuery.of(context).size.height;
+    // double width = MediaQuery.of(context).size.width;
     return Container(
       constraints: const BoxConstraints.expand(),
       decoration: const BoxDecoration(
@@ -43,6 +42,7 @@ class AboutPage extends StatelessWidget {
         Expanded(
           flex: 3,
           child: Container(
+            constraints: const BoxConstraints.expand(),
             padding: const EdgeInsets.only(
                 top: 25,
                 // left: 25,
@@ -52,6 +52,17 @@ class AboutPage extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                const CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 50,
+                  backgroundImage: AssetImage("assets/images/avt.png"),
+                ),
+                Text("Ứng dụng này được viết bởi Hoàng Tân", style: CustomTextStyle.aboutDescriptionStyle,),
+              ],
+            ),
           ),
         )
       ]),

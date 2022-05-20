@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/images/masthead.png'),
-              alignment: Alignment.topCenter),
+              alignment: Alignment.topRight),
           color: Color.fromRGBO(0, 106, 216, 1)),
       child: Column(children: <Widget>[
         Expanded(
