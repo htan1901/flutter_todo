@@ -8,7 +8,7 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(0, 106, 216, 1),
+        backgroundColor: const Color.fromRGBO(255, 177, 163, 1),
         elevation: 0,
       ),
       body: buildBody(context),
@@ -26,22 +26,22 @@ class AboutPage extends StatelessWidget {
               image: AssetImage('assets/images/about.png'),
               scale: 0.5,
               alignment: Alignment.topCenter),
-          color: Color.fromRGBO(0, 106, 216, 1)),
+          color: Color.fromRGBO(255, 177, 163, 1)),
       child: Column(children: <Widget>[
         Expanded(
-            flex: 1,
+            flex: 2,
             child: Container(
               padding: const EdgeInsets.only(top: 30, left: 30),
               alignment: Alignment.topLeft,
-              child: Text('Về ứng dụng này',
-                  style: const TextStyle(
+              child: const Text('Về ứng dụng này',
+                  style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,
                       fontFamily: 'SourceSansPro',
                       fontWeight: FontWeight.bold)),
             )),
         Expanded(
-          flex: 1,
+          flex: 3,
           child: Container(
             padding: const EdgeInsets.only(
                 top: 25,

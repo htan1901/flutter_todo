@@ -29,8 +29,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
           Container(
               padding: const EdgeInsets.only(top: 20),
               child: const CircleAvatar(
-                radius: 60,
-                backgroundImage: AssetImage('assets/images/dogo.png'),
+                backgroundColor: Colors.white,
+                radius: 30,
+                backgroundImage: AssetImage('assets/images/avt.png'),
               )),
           Container(
             alignment: Alignment.center,
