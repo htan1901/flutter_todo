@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:todo/styles/text_style.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({Key? key}) : super(key: key);
@@ -60,7 +62,28 @@ class AboutPage extends StatelessWidget {
                   radius: 50,
                   backgroundImage: AssetImage("assets/images/avt.png"),
                 ),
-                Text("Ứng dụng này được viết bởi Hoàng Tân", style: CustomTextStyle.aboutDescriptionStyle,),
+                Text(
+                  "Ứng dụng này được viết bởi Hoàng Tân",
+                  style: CustomTextStyle.aboutDescriptionStyle,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          launchUrl(Uri.parse('https://facebook.com/htan1901'));
+                        },
+                        color: const Color.fromRGBO(15, 147, 243, 1),
+                        icon: const FaIcon(FontAwesomeIcons.facebook),
+                        iconSize: 40),
+                    IconButton(
+                        onPressed: () {
+                          launchUrl(Uri.parse('https://github.com/htan1901'));
+                        },
+                        icon: const FaIcon(FontAwesomeIcons.github),
+                        iconSize: 40),
+                  ],
+                )
               ],
             ),
           ),
